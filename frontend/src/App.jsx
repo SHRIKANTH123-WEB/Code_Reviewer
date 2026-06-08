@@ -303,7 +303,8 @@ export default function App() {
     setReview(null);
 
     try {
-      const response = await fetch('http://localhost:48201/api/review', {
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:48201';
+      const response = await fetch(`${apiBaseUrl}/api/review`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
