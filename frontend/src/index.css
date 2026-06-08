@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-brand-primary: #588157;
+  --color-brand-secondary: #3a5a40;
+  --color-brand-accent: #a3b18a;
+  
+  --color-dark-bg: #344e41;
+  --color-dark-card: #3a5a40;
+  --color-dark-border: #588157;
+  
+  --color-light-bg: #dad7cd;
+  --color-light-card: #e5e3db;
+  --color-light-border: #a3b18a;
+
+  /* Overriding Tailwind Emerald */
+  --color-emerald-400: #7a9c79;
+  --color-emerald-500: #588157;
+  --color-emerald-600: #466745;
+  --color-emerald-700: #344d34;
+
+  /* Overriding Teal */
+  --color-teal-400: #537a5a;
+  --color-teal-500: #3a5a40;
+  --color-teal-600: #29402d;
+
+  /* Overriding Green */
+  --color-green-400: #c1ccae;
+  --color-green-500: #a3b18a;
+  --color-green-600: #8c9c71;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d1d5db;
+}
+
+/* Shimmer Animation for loading state */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.light .animate-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass {
+  background: rgba(17, 24, 39, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Prism Theme for Premium Code Syntax Highlight */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Light Theme overrides for Prism */
+.light code[class*="language-"],
+.light pre[class*="language-"] {
+  color: #1f2937;
+}
+
+/* Token Styles */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6272a4;
+}
+
+.light .token.comment {
+  color: #9ca3af;
+}
+
+.token.punctuation {
+  color: #f8f8f2;
+}
+
+.light .token.punctuation {
+  color: #374151;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #ff79c6;
+}
+
+.token.boolean,
+.token.number {
+  color: #bd93f9;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #50fa7b;
+}
+
+.light .token.string {
+  color: #0d9488;
+}
+
+.light .token.number,
+.light .token.boolean {
+  color: #7c3aed;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #f1fa8c;
+}
+
+.light .token.operator {
+  color: #b91c1c;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #ff79c6;
+}
+
+.light .token.keyword {
+  color: #2563eb;
+}
+
+.token.function,
+.token.class-name {
+  color: #8be9fd;
+}
+
+.light .token.function {
+  color: #d97706;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f1fa8c;
+}
