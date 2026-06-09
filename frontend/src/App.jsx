@@ -438,9 +438,9 @@ export default function App() {
               </div>
             </header>
 
-            <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-6 flex flex-col gap-6">
+            <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-6 flex flex-col gap-6">
               {/* Row 1: Language Selection & Actions */}
-              <div className="flex flex-wrap items-end justify-between gap-4 border border-light-border dark:border-dark-border p-5 rounded-2xl bg-white dark:bg-dark-card shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border border-light-border dark:border-dark-border p-4 md:p-5 rounded-2xl bg-white dark:bg-dark-card shadow-sm">
                 <LanguageSelector 
                   selectedLanguage={language} 
                   onChange={handleLanguageChange}
@@ -452,7 +452,7 @@ export default function App() {
                 <button
                   onClick={handleReviewCode}
                   disabled={loading}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 dark:hover:shadow-emerald-950/40 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
+                  className="w-full lg:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 dark:hover:shadow-emerald-950/40 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer flex-shrink-0"
                   id="review-btn"
                 >
                   {loading ? (
@@ -470,10 +470,10 @@ export default function App() {
               </div>
 
               {/* Row 2: Grid Workspace */}
-              <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[550px]">
+              <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[400px] lg:min-h-[550px]">
                 
                 {/* Left Panel: Editor */}
-                <div className="h-full flex flex-col min-h-[400px]">
+                <div className="h-full flex flex-col min-h-[350px] lg:h-auto">
                   <GithubFetch onCodeFetched={(fetchedCode, detectedLanguage) => {
                     setCode(fetchedCode);
                     if (detectedLanguage) {
@@ -490,7 +490,7 @@ export default function App() {
                 </div>
 
                 {/* Right Panel: Review Display */}
-                <div className="h-full flex flex-col min-h-[400px]">
+                <div className="h-full flex flex-col min-h-[350px] lg:h-auto">
                   
                   {/* Error Message */}
                   {error && (

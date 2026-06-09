@@ -26,15 +26,15 @@ export default function LanguageSelector({ selectedLanguage, onChange, templates
               <button
                 key={lang.id}
                 onClick={() => onChange(lang.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${
+                className={`flex items-center gap-1.5 md:gap-2 px-3 py-2 md:px-4 md:py-2.5 rounded-xl border text-xs md:text-sm font-semibold transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${
                   isSelected
                     ? 'border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shadow-md ring-1 ring-emerald-500/50'
                     : 'bg-white border-light-border text-gray-600 hover:bg-gray-50 dark:bg-dark-card dark:border-dark-border dark:text-gray-400 dark:hover:bg-gray-800'
                 }`}
                 id={`lang-select-${lang.id}`}
               >
-                <div className={`p-1 rounded-lg ${lang.color}`}>
-                  <Icon className="h-4 w-4" />
+                <div className={`p-0.5 md:p-1 rounded-lg ${lang.color}`}>
+                  <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </div>
                 <span>{lang.name}</span>
               </button>
