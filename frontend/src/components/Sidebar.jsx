@@ -2,17 +2,28 @@ import React from 'react';
 import { Code2, BarChart2, Settings, Sparkles, LogOut } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-export default function Sidebar({ activeView, setActiveView, onGoToLanding, theme, toggleTheme }) {
+export default function Sidebar({ activeView, setActiveView, onGoToLanding, theme, toggleTheme, isOpen, setIsOpen }) {
   const navItems = [
     { id: 'review', label: 'Code Review', icon: Code2 },
     { id: 'analytics', label: 'Analytics', icon: BarChart2 },
   ];
 
   return (
-    <aside className="w-64 h-screen sticky top-0 border-r border-light-border dark:border-dark-border bg-white dark:bg-dark-bg flex flex-col transition-colors z-40">
+    <>
+      {/* Mobile Backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden transition-opacity"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+      
+      <aside className={`fixed md:sticky top-0 left-0 h-screen w-64 border-r border-light-border dark:border-dark-border bg-white dark:bg-dark-bg flex flex-col transition-transform duration-300 z-50 md:z-40 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+      }`}>
       
       {/* Brand */}
-      <div className="h-20 flex items-center px-6 border-b border-light-border dark:border-dark-border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors" onClick={onGoToLanding}>
+      <div className="h-20 flex items-center justify-between px-6 border-b border-light-border dark:border-dark-border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors" onClick={() => { onGoToLanding(); setIsOpen(false); }}>
         <div className="flex items-center gap-3">
           <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-green-500 flex items-center justify-center shadow-md">
             <Sparkles className="w-4 h-4 text-white" />
@@ -26,6 +37,18 @@ export default function Sidebar({ activeView, setActiveView, onGoToLanding, them
             </span>
           </div>
         </div>
+        {/* Mobile close button */}
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(false);
+          }}
+          className="md:hidden p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       {/* Navigation */}
@@ -67,5 +90,6 @@ export default function Sidebar({ activeView, setActiveView, onGoToLanding, them
       </div>
 
     </aside>
+    </>
   );
 }

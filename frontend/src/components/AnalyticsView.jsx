@@ -2,7 +2,7 @@ import React from 'react';
 import { BarChart2, Activity, ShieldCheck, Code, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function AnalyticsView({ history }) {
+export default function AnalyticsView({ history, onOpenSidebar }) {
   
   // Calculate basic stats
   const totalReviews = history.length;
@@ -24,7 +24,17 @@ export default function AnalyticsView({ history }) {
   return (
     <div className="max-w-5xl mx-auto py-8 px-6 w-full animate-fadeIn">
       
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex items-center gap-4">
+        {onOpenSidebar && (
+          <button 
+            onClick={onOpenSidebar}
+            className="md:hidden p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer flex-shrink-0"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        )}
         <div>
           <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white flex items-center gap-2">
             <BarChart2 className="w-6 h-6 text-emerald-500" /> Analytics Overview

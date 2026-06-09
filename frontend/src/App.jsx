@@ -232,6 +232,7 @@ export default function App() {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [user, setUser] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Load history on mount
   useEffect(() => {
@@ -399,19 +400,29 @@ export default function App() {
         onGoToLanding={() => setCurrentPage('landing')} 
         theme={theme} 
         toggleTheme={toggleTheme} 
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 max-h-screen overflow-y-auto">
         
         {/* Dynamic View Rendering */}
-        {activeView === 'analytics' && <AnalyticsView history={history} />}
+        {activeView === 'analytics' && <AnalyticsView history={history} onOpenSidebar={() => setIsSidebarOpen(true)} />}
 
         {activeView === 'review' && (
           <>
             {/* Top Bar for Code Review */}
             <header className="sticky top-0 z-30 w-full border-b border-light-border dark:border-dark-border bg-white/80 dark:bg-dark-bg/85 backdrop-blur-md transition-colors px-6 h-16 flex items-center justify-between">
-              <div>
+              <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="md:hidden p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
                 <h2 className="text-lg font-extrabold text-gray-900 dark:text-white flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-emerald-500" /> Code Review Workspace
                 </h2>
