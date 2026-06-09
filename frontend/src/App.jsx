@@ -334,7 +334,16 @@ export default function App() {
       }
     } catch (err) {
       console.error(err);
-      setError(err.message || 'Unable to connect to review server. Make sure the backend is running.');
+      let errorMsg = err.message || 'Unable to connect to review server.';
+      if (errorMsg === 'Failed to fetch' || errorMsg.toLowerCase().includes('failed to fetch')) {
+        const isProd = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+        if (isProd) {
+          errorMsg = 'Failed to connect to the backend server. Make sure you have configured the VITE_API_URL environment variable in your Render settings pointing to your live backend URL (e.g., https://your-backend.onrender.com).';
+        } else {
+          errorMsg = 'Unable to connect to the local backend. Please make sure your backend server is running on port 48201.';
+        }
+      }
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
